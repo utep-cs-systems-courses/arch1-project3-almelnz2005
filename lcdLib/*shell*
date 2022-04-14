@@ -1,0 +1,118 @@
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make clean
+rm -f libLcd.a *.o *.elf
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-11x16.o font-11x16.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-5x7.o font-5x7.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-8x12.o font-8x12.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcdutils.o lcdutils.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcddraw.o lcddraw.c
+msp430-elf-ar crs libLcd.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcddemo.o lcddemo.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h  -L/opt/ti/msp430_gcc/include -L../lib  lcddemo.o libLcd.a -o lcddemo.elf -lTimer 
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make load
+msp430loader.sh lcddemo.elf
+check Bus 001 Device 005: ID 0451:f432 Texas Instruments, Inc. eZ430 Development Tool
+Detected ez430 dev kit
+mspdebug rf2500 "prog  lcddemo.elf "
+MSPDebug version 0.21 - debugging tool for MSP430 MCUs
+Copyright (C) 2009-2012 Daniel Beer <dlbeer@gmail.com>
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Trying to open interface 1 on 005
+rf2500: warning: can't detach kernel driver: No such file or directory
+Initializing FET...
+FET protocol version is 30394216
+Set Vcc: 3000 mV
+Configured for Spy-Bi-Wire
+fet: FET returned error code 4 (Could not find device or device not supported)
+fet: command C_IDENT1 failed
+fet: identify failed
+Trying again...
+Initializing FET...
+FET protocol version is 30394216
+Set Vcc: 3000 mV
+Configured for Spy-Bi-Wire
+Sending reset...
+Device ID: 0x2553
+  Code start address: 0xc000
+  Code size         : 16384 byte = 16 kb
+  RAM  start address: 0x200
+  RAM  end   address: 0x3ff
+  RAM  size         : 512 byte = 0 kb
+Device: MSP430G2553/G2403
+Number of breakpoints: 2
+fet: FET returned NAK
+warning: device does not support power profiling
+Chip ID data: 25 53
+Erasing...
+Programming...
+Writing    2 bytes at fffe [section: __reset_vector]...
+Writing  486 bytes at c000 [section: .rodata]...
+Writing    4 bytes at c1e8 [section: .rodata2]...
+Writing 1146 bytes at c1ec [section: .text]...
+Done, 1638 bytes total
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make clean
+rm -f libLcd.a *.o *.elf
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-11x16.o font-11x16.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-5x7.o font-5x7.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o font-8x12.o font-8x12.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcdutils.o lcdutils.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcddraw.o lcddraw.c
+msp430-elf-ar crs libLcd.a font-11x16.o font-5x7.o font-8x12.o lcdutils.o lcddraw.o
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcddemo.o lcddemo.c
+lcddemo.c: In function 'main':
+lcddemo.c:43:15: error: 'cold' undeclared (first use in this function); did you mean 'col'?
+     drawPixel(cold, row, COLOR_WHITE);
+               ^~~~
+               col
+lcddemo.c:43:15: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [<builtin>: lcddemo.o] Error 1
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h    -c -o lcddemo.o lcddemo.c
+msp430-elf-gcc -mmcu=msp430g2553 -Os -I../h  -L/opt/ti/msp430_gcc/include -L../lib  lcddemo.o libLcd.a -o lcddemo.elf -lTimer 
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> make load
+msp430loader.sh lcddemo.elf
+check Bus 001 Device 005: ID 0451:f432 Texas Instruments, Inc. eZ430 Development Tool
+Detected ez430 dev kit
+mspdebug rf2500 "prog  lcddemo.elf "
+MSPDebug version 0.21 - debugging tool for MSP430 MCUs
+Copyright (C) 2009-2012 Daniel Beer <dlbeer@gmail.com>
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+Trying to open interface 1 on 005
+rf2500: warning: can't detach kernel driver: No such file or directory
+Initializing FET...
+FET protocol version is 30394216
+Set Vcc: 3000 mV
+Configured for Spy-Bi-Wire
+fet: FET returned error code 4 (Could not find device or device not supported)
+fet: command C_IDENT1 failed
+fet: identify failed
+Trying again...
+Initializing FET...
+FET protocol version is 30394216
+Set Vcc: 3000 mV
+Configured for Spy-Bi-Wire
+Sending reset...
+Device ID: 0x2553
+  Code start address: 0xc000
+  Code size         : 16384 byte = 16 kb
+  RAM  start address: 0x200
+  RAM  end   address: 0x3ff
+  RAM  size         : 512 byte = 0 kb
+Device: MSP430G2553/G2403
+Number of breakpoints: 2
+fet: FET returned NAK
+warning: device does not support power profiling
+Chip ID data: 25 53
+Erasing...
+Programming...
+Writing    2 bytes at fffe [section: __reset_vector]...
+Writing  486 bytes at c000 [section: .rodata]...
+Writing    4 bytes at c1e8 [section: .rodata2]...
+Writing 1202 bytes at c1ec [section: .text]...
+Done, 1694 bytes total
+student@systems-vm:~/Documents/CompArch/arch1-project3-almelnz2005/lcdLib> 

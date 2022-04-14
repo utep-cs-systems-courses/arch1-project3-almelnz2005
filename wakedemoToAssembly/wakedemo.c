@@ -2,7 +2,7 @@
 #include <libTimer.h>
 #include "lcdutils.h"
 #include "lcddraw.h"
-
+#include "switches.h"
 // WARNING: LCD DISPLAY USES P1.0.  Do not touch!!! 
 
 #define LED BIT6		/* note that bit zero req'd for display */
@@ -14,9 +14,7 @@
 
 #define SWITCHES 15
 
-static char 
-switch_update_interrupt_sense()
-{
+char switch_update_interrupt_sense(){
   char p2val = P2IN;
   /* update switch interrupt to detect changes from current buttons */
   P2IES |= (p2val & SWITCHES);	/* if switch up, sense down */
@@ -24,9 +22,7 @@ switch_update_interrupt_sense()
   return p2val;
 }
 
-void 
-switch_init()			/* setup switch */
-{  
+void switch_init(){			/* setup switch */  
   P2REN |= SWITCHES;		/* enables resistors for switches */
   P2IE |= SWITCHES;		/* enable interrupts from switches */
   P2OUT |= SWITCHES;		/* pull-ups for switches */
@@ -36,13 +32,14 @@ switch_init()			/* setup switch */
 
 int switches = 0;
 
+/*
 void
 switch_interrupt_handler()
 {
   char p2val = switch_update_interrupt_sense();
   switches = ~p2val & SWITCHES;
 }
-
+*/
 
 // axis zero for col, axis 1 for row
 short drawPos[2] = {10,10}, controlPos[2] = {10,10};
@@ -65,8 +62,7 @@ void wdt_c_handler()
 void update_shape();
 void move_square();
 
-void main()
-{
+void main(){
   
   P1DIR |= LED;		/**< Green led on when CPU on */
   P1OUT |= LED;
@@ -99,8 +95,8 @@ void move_square(){
 }
     
     
-void update_shape()
-{
+void update_shape(){
+  
   static unsigned char row = screenHeight / 2, col = screenWidth / 2;
   static char blue = 31, green = 0, red = 31;
   static unsigned char step = 0;
